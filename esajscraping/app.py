@@ -20,7 +20,7 @@ def captura_processo_esaj():
         else:
             app.clients[ip] = {"requests": deque([datetime.now()], 10)}
     data = request.get_json()
-    if data.get("numeroProcesso", None) is None:
+    if data is None or data.get("numeroProcesso") is None:
         return jsonify(dict(codigo=4, mensagem="Numero nao informado")), 400
     resultado = get_dados_processo(data["numeroProcesso"])
     if resultado is None:
